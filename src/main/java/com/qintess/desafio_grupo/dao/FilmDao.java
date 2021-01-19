@@ -1,10 +1,7 @@
 package com.qintess.desafio_grupo.dao;
 
 import java.nio.charset.IllegalCharsetNameException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 import com.qintess.desafio_grupo.entities.Film;
 
@@ -22,7 +19,7 @@ public class FilmDao{
 			String sql = "INSERT INTO FILM(TITLE, DESCRIPTION, RELEASE_YEAR, LANGUAGE_ID, RENTAL_DURATION, RENTAL_RATE, LENGTH, REPLACEMENT_COST, RATING, "
 					+ "LAST_UPDATE, SPECIAL_FEATURES) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'R', NOW(), '{Trailers}')";
 
-			PreparedStatement ps = connect.prepareStatement(sql);
+			PreparedStatement ps = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, title);
 			ps.setInt(3, release_year);
@@ -41,7 +38,8 @@ public class FilmDao{
 			else {
 				try(ResultSet rs = ps.getGeneratedKeys()){
 					if(rs.next()){
-						film.setFilm_id(rs.getInt("film_id"));
+						var teste = rs.getInt("film_id");
+						film.setFilm_id(teste);
 						System.out.println("Filme inserido");
 					}
 					else{

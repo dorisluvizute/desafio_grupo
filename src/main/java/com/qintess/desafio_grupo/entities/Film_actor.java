@@ -38,4 +38,13 @@ public class Film_actor {
     public void setLast_update(String last_update) {
         this.last_update = last_update;
     }
+
+    @Override
+    public String toString() {
+        return "Film_actor{" +
+                "actor_id=" + actor_id +
+                ", film_id=" + film_id +
+                ", last_update='" + last_update + '\'' +
+                '}';
+    }
 }

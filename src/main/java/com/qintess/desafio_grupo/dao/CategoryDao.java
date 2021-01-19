@@ -3,10 +3,7 @@ package com.qintess.desafio_grupo.dao;
 import com.qintess.desafio_grupo.entities.Actor;
 import com.qintess.desafio_grupo.entities.Category;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CategoryDao {
 
@@ -20,7 +17,7 @@ public class CategoryDao {
         String sql = "INSERT INTO CATEGORY(NAME, LAST_UPDATE) VALUES (?, NOW())";
 
         try {
-            PreparedStatement ps = connect.prepareStatement(sql);
+            PreparedStatement ps = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, name);
 

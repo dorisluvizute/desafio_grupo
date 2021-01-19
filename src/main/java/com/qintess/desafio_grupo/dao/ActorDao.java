@@ -2,10 +2,7 @@ package com.qintess.desafio_grupo.dao;
 
 import com.qintess.desafio_grupo.entities.Actor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ActorDao {
 
@@ -19,7 +16,7 @@ public class ActorDao {
         String sql = "INSERT INTO ACTOR(FIRST_NAME, LAST_NAME, LAST_UPDATE) VALUES (?, ?, NOW())";
 
         try{
-            PreparedStatement ps = connect.prepareStatement(sql);
+            PreparedStatement ps = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, first_name);
             ps.setString(2, last_name);

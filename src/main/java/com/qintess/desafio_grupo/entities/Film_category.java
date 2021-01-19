@@ -38,4 +38,13 @@ public class Film_category {
     public void setLast_update(String last_update) {
         this.last_update = last_update;
     }
+
+    @Override
+    public String toString() {
+        return "Film_category{" +
+                "film_id=" + film_id +
+                ", category_id=" + category_id +
+                ", last_update='" + last_update + '\'' +
+                '}';
+    }
 }
